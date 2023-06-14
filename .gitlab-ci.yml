@@ -36,6 +36,7 @@ deploy:
     stage: deploy
     image: ${ECR_REPO_URL}/utils/aws-helm:5a7e2aa0
     script:
+      - mkdir ${HOME}/.kube
       - base64 --decode ${KUBE_CONFIG} > ${HOME}/.kube/config
       - envsubst < templates/elastic-agent-managed-kubernetes.yaml.template > elastic-agent-managed-kubernetes.yaml
       - envsubst < templates/otel-config.yaml.template > otel-config.yaml
