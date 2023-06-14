@@ -42,19 +42,19 @@ spec:
             # Fleet Server URL to enroll the Elastic Agent into
             # FLEET_URL can be found in Kibana, go to Management > Fleet > Settings
             - name: FLEET_URL
-              value: "https://adfabb2774ca4932af8ca82b49b08f94.fleet.us-west-1.aws.found.io:443"
+              value: "${FLEET_URL}"
             # Elasticsearch API key used to enroll Elastic Agents in Fleet (https://www.elastic.co/guide/en/fleet/current/fleet-enrollment-tokens.html#fleet-enrollment-tokens)
             # If FLEET_ENROLLMENT_TOKEN is empty then KIBANA_HOST, KIBANA_FLEET_USERNAME, KIBANA_FLEET_PASSWORD are needed
             - name: FLEET_ENROLLMENT_TOKEN
-              value: "aFViR21JY0I1aS1JdVp6cVZ5V2U6QkJndTFTSnFTZ2l5em9hRGV6eU5Idw=="
+              value: "${FLEET_ENROLLMENT_TOKEN}"
             - name: KIBANA_HOST
-              value: "http://kibana:5601"
+              value: "${KIBANA_HOST}"
             # The basic authentication username used to connect to Kibana and retrieve a service_token to enable Fleet
             - name: KIBANA_FLEET_USERNAME
-              value: "elastic"
+              value: "${KIBANA_FLEET_USERNAME}"
             # The basic authentication password used to connect to Kibana and retrieve a service_token to enable Fleet
             - name: KIBANA_FLEET_PASSWORD
-              value: "changeme"
+              value: "${KIBANA_FLEET_PASSWORD}"
             - name: NODE_NAME
               valueFrom:
                 fieldRef:
