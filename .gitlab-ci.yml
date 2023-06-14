@@ -1,4 +1,5 @@
 variables:
+  ECR_REPO_URL: 873799242473.dkr.ecr.ap-northeast-2.amazonaws.com
   #elastic-agent.yaml
   ELASTIC_AGENT_VERSION: "8.5.3"
   KIBANA_HOST: "http://kibana:5601"
