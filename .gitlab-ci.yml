@@ -43,7 +43,8 @@ deploy:
       - envsubst < templates/otel-config.yaml.template > otel-config.yaml
       - cat elastic-agent-managed-kubernetes.yaml
       - cat otel-config.yaml
-      - kubectl apply -f elastic-agent-managed-kubernetes.yaml otel-config.yaml
+      - kubectl apply -f elastic-agent-managed-kubernetes.yaml
+      - kubectl apply -f otel-config.yaml
     tags:
     - dev
     only:
