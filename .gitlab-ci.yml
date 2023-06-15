@@ -1,8 +1,7 @@
 variables:
   ECR_REPO_URL: 873799242473.dkr.ecr.ap-northeast-2.amazonaws.com
   #elastic-agent.yaml
-  ELASTIC_AGENT_VERSION: "8.5.3"
-  KIBANA_HOST: "http://kibana:5601"
+  ELASTIC_AGENT_VERSION: "8.8.1"
   #otel-config.yaml
   GRPC_ENDPOINT: "0.0.0.0:4317"
   HTTP_ENDPOINT: "0.0.0.0:4318"
@@ -16,6 +15,7 @@ workflow:
         #elastic-agent.yaml
         FLEET_URL: ""
         FLEET_ENROLLMENT_TOKEN: ""
+        KIBANA_HOST: ""
         #otel-config.yaml
         APM_ENDPOINT: ""
         APM_SECRET_TOKEN: ""
@@ -24,6 +24,7 @@ workflow:
         #elastic-agent.yaml
         FLEET_URL: "https://a927d56963234c64b8504a1fc0ddafe8.fleet.ap-northeast-2.aws.elastic-cloud.com:443"
         FLEET_ENROLLMENT_TOKEN: "${DEV_FLEET_ENROLLMENT_TOKEN}"
+        KIBANA_HOST: "https://dev-arbeon-monitor.kb.ap-northeast-2.aws.elastic-cloud.com:9243"
         #otel-config.yaml
         APM_ENDPOINT: "https://dev-arbeon-monitor.apm.ap-northeast-2.aws.elastic-cloud.com:443"
         APM_SECRET_TOKEN: "${DEV_APM_SECRET_TOKEN}"
@@ -42,7 +43,7 @@ deploy:
       - envsubst < templates/otel-config.yaml.template > otel-config.yaml
       - cat elastic-agent-managed-kubernetes.yaml
       - cat otel-config.yaml
-      #- kubectl apply -f elastic-agent-managed-kubernetes.yaml otel-config.yaml
+      - kubectl apply -f elastic-agent-managed-kubernetes.yaml otel-config.yaml
     tags:
     - dev
     only:
