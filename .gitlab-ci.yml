@@ -14,12 +14,13 @@ workflow:
     variables:
         KUBE_CONFIG: ${INTE_KUBE_CONFIG}
         #elastic-agent.yaml
-        FLEET_URL: ""
-        FLEET_ENROLLMENT_TOKEN: ""
-        KIBANA_HOST: ""
+        FLEET_URL: "https://a927d56963234c64b8504a1fc0ddafe8.fleet.ap-northeast-2.aws.elastic-cloud.com:443"
+        FLEET_ENROLLMENT_TOKEN: "${DEV_FLEET_ENROLLMENT_TOKEN}"
+        KIBANA_HOST: "https://dev-arbeon-monitor.kb.ap-northeast-2.aws.elastic-cloud.com:9243"
         #otel-config.yaml
-        APM_ENDPOINT: ""
-        APM_SECRET_TOKEN: ""
+        APM_ENDPOINT: "https://dev-arbeon-monitor.apm.ap-northeast-2.aws.elastic-cloud.com:443"
+        APM_SECRET_TOKEN: "${DEV_APM_SECRET_TOKEN}"
+        KIBANA_FLEET_PASSWORD: "${DEV_KIBANA_FLEET_PASSWORD}"
   - if: $CI_COMMIT_BRANCH == "develop"
     variables:
         KUBE_CONFIG: ${DEV_KUBE_CONFIG}
