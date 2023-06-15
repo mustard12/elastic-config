@@ -12,6 +12,7 @@ workflow:
   rules:
   - if: $CI_COMMIT_BRANCH == "integration"
     variables:
+        KUBE_CONFIG: ${INTE_KUBE_CONFIG}
         #elastic-agent.yaml
         FLEET_URL: ""
         FLEET_ENROLLMENT_TOKEN: ""
@@ -21,6 +22,7 @@ workflow:
         APM_SECRET_TOKEN: ""
   - if: $CI_COMMIT_BRANCH == "develop"
     variables:
+        KUBE_CONFIG: ${DEV_KUBE_CONFIG}
         #elastic-agent.yaml
         FLEET_URL: "https://a927d56963234c64b8504a1fc0ddafe8.fleet.ap-northeast-2.aws.elastic-cloud.com:443"
         FLEET_ENROLLMENT_TOKEN: "${DEV_FLEET_ENROLLMENT_TOKEN}"
