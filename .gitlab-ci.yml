@@ -79,8 +79,6 @@ deploy:
 deploy-eks:
   stage: deploy
   image: ${ECR_REPO_URL}/utils/aws-helm:5a7e2aa0
-  before_script:
-    - if [ -z "$IMAGE_TAG" ]; then echo "IMAGE_TAG not exist" && exit -1; else echo ${IMAGE_TAG}; fi
   script:
     - aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
     - kubectl get nodes
