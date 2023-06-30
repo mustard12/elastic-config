@@ -80,7 +80,8 @@ deploy:
     - develop
     - integration
   environment:
-    - name: $ENV
+    name: ${ENV}
+
     
 
 deploy-eks:
@@ -102,4 +103,5 @@ deploy-eks:
     - master
     - staging
   environment:
-    - name: $ENV
+    name: ${ENV}
+
