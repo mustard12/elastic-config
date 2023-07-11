@@ -52,13 +52,13 @@ workflow:
         EKS_CLUSTER_NAME: "arbeon-production-cls"
         #elastic-agent.yaml
         ELASTIC_AGENT_VERSION: "8.8.2"
-        FLEET_URL: ""
-        FLEET_ENROLLMENT_TOKEN: ""
-        KIBANA_HOST: ""
+        FLEET_URL: "https://d5413dfdd9af4b2d9d16ee46b1b0be11.fleet.ap-northeast-2.aws.elastic-cloud.com:443"
+        FLEET_ENROLLMENT_TOKEN: "${PROD_FLEET_ENROLLMENT_TOKEN}"
+        KIBANA_HOST: "https://prod-arbeon-monitor.kb.ap-northeast-2.aws.elastic-cloud.com:9243"
         #otel-config.yaml
-        APM_ENDPOINT: ""
-        APM_SECRET_TOKEN: ""
-        KIBANA_FLEET_PASSWORD: ""
+        APM_ENDPOINT: "https://prod-arbeon-monitor.apm.ap-northeast-2.aws.elastic-cloud.com:443"
+        APM_SECRET_TOKEN: "${PROD_APM_SECRET_TOKEN}"
+        KIBANA_FLEET_PASSWORD: "${PROD_KIBANA_FLEET_PASSWORD}"
         ENV: production
           
 stages:
