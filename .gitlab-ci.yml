@@ -47,7 +47,7 @@ workflow:
         APM_SECRET_TOKEN: "${DEV_APM_SECRET_TOKEN}"
         KIBANA_FLEET_PASSWORD: "${DEV_KIBANA_FLEET_PASSWORD}"
         ENV: staging
-  - if: $CI_COMMIT_BRANCH == "production"
+  - if: $CI_COMMIT_BRANCH == "main"
     variables:
         EKS_CLUSTER_NAME: "arbeon-production-cls"
         #elastic-agent.yaml
