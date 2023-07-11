@@ -13,16 +13,16 @@ data:
       otlp:
         protocols:
           grpc: 
-            endpoint: 0.0.0.0:4317
+            endpoint: ${GRPC_ENDPOINT}
           http: 
-            endpoint: 0.0.0.0:4318
+            endpoint: ${HTTP_ENDPOINT}
     exporters:
       logging:
         loglevel: warn 
       otlp/elastic:
-        endpoint: "https://3fcd59fd06b64fb2b58cc5ccb385aeb7.apm.ap-northeast-2.aws.elastic-cloud.com:443"
+        endpoint: "${APM_ENDPOINT}"
         headers:
-          Authorization: "Bearer eoC1vx3WmvG2BRD04o"
+          Authorization: "Bearer ${APM_SECRET_TOKEN}"
         sending_queue:
           num_consumers: 4
           queue_size: 100
@@ -78,7 +78,7 @@ spec:
         - command:
             - "/otelcol"
             - "--config=/conf/otel-agent-config.yaml"
-          image: otel/opentelemetry-collector:0.62.1
+          image: otel/opentelemetry-collector:${OTEL_COLLECTOR_VERSION}
           name: otel-agent
           resources:
             limits:
@@ -116,9 +116,9 @@ data:
       otlp:
         protocols:
           grpc: 
-            endpoint: 0.0.0.0:4317
+            endpoint: "${GRPC_ENDPOINT}"
           http: 
-            endpoint: 0.0.0.0:4318
+            endpoint: "${HTTP_ENDPOINT}"
     processors:
       batch:
       memory_limiter:
@@ -136,9 +136,9 @@ data:
       logging:
         loglevel: warn
       otlp/elastic:
-        endpoint: "https://3fcd59fd06b64fb2b58cc5ccb385aeb7.apm.ap-northeast-2.aws.elastic-cloud.com:443"
+        endpoint: "${APM_ENDPOINT}"
         headers:
-          Authorization: "Bearer eoC1vx3WmvG2BRD04o"
+          Authorization: "Bearer ${APM_SECRET_TOKEN}"
     service:
       extensions: [zpages, memory_ballast]
       pipelines:
@@ -202,7 +202,7 @@ spec:
         - command:
             - "/otelcol"
             - "--config=/conf/otel-collector-config.yaml"
-          image: otel/opentelemetry-collector:0.62.1
+          image: otel/opentelemetry-collector:${OTEL_COLLECTOR_VERSION}
           name: otel-collector
           resources:
             limits:
@@ -218,7 +218,6 @@ spec:
             - containerPort: 14268 # Default endpoint for Jaeger HTTP receiver.
             - containerPort: 9411 # Default endpoint for Zipkin receiver.
             - containerPort: 8888  # Default endpoint for querying metrics.
-            - containerPort: 6565 # Default endpoint for Pelican gRPC receiver.
           volumeMounts:
             - name: otel-collector-config-vol
               mountPath: /conf
