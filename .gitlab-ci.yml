@@ -1,7 +1,5 @@
 variables:
   ECR_REPO_URL: 873799242473.dkr.ecr.ap-northeast-2.amazonaws.com
-  #elastic-agent.yaml
-  ELASTIC_AGENT_VERSION: "8.8.1"
   #otel-config.yaml
   GRPC_ENDPOINT: "0.0.0.0:4317"
   HTTP_ENDPOINT: "0.0.0.0:4318"
@@ -14,6 +12,7 @@ workflow:
     variables:
         KUBE_CONFIG: ${DEV_KUBE_CONFIG}
         #elastic-agent.yaml
+        ELASTIC_AGENT_VERSION: "8.8.1"
         FLEET_URL: "https://87311c79ca594cc78832b2f70fd37836.fleet.ap-northeast-2.aws.elastic-cloud.com:443"
         FLEET_ENROLLMENT_TOKEN: "${DEV_FLEET_ENROLLMENT_TOKEN}"
         KIBANA_HOST: "https://dev-arbeon-monitor.kb.ap-northeast-2.aws.elastic-cloud.com:9243"
@@ -26,6 +25,7 @@ workflow:
     variables:
         KUBE_CONFIG: ${INTE_KUBE_CONFIG}
         #elastic-agent.yaml
+        ELASTIC_AGENT_VERSION: "8.8.1"
         FLEET_URL: "https://87311c79ca594cc78832b2f70fd37836.fleet.ap-northeast-2.aws.elastic-cloud.com:443"
         FLEET_ENROLLMENT_TOKEN: "${DEV_FLEET_ENROLLMENT_TOKEN}"
         KIBANA_HOST: "https://dev-arbeon-monitor.kb.ap-northeast-2.aws.elastic-cloud.com:9243"
@@ -38,6 +38,7 @@ workflow:
     variables:
         EKS_CLUSTER_NAME: "arbeon-staging-cls"
         #elastic-agent.yaml
+        ELASTIC_AGENT_VERSION: "8.8.1"
         FLEET_URL: "https://87311c79ca594cc78832b2f70fd37836.fleet.ap-northeast-2.aws.elastic-cloud.com:443"
         FLEET_ENROLLMENT_TOKEN: "${DEV_FLEET_ENROLLMENT_TOKEN}"
         KIBANA_HOST: "https://dev-arbeon-monitor.kb.ap-northeast-2.aws.elastic-cloud.com:9243"
@@ -46,17 +47,18 @@ workflow:
         APM_SECRET_TOKEN: "${DEV_APM_SECRET_TOKEN}"
         KIBANA_FLEET_PASSWORD: "${DEV_KIBANA_FLEET_PASSWORD}"
         ENV: staging
-  - if: $CI_COMMIT_BRANCH == "production"
+  - if: $CI_COMMIT_BRANCH == "main"
     variables:
         EKS_CLUSTER_NAME: "arbeon-production-cls"
         #elastic-agent.yaml
-        FLEET_URL: ""
-        FLEET_ENROLLMENT_TOKEN: ""
-        KIBANA_HOST: ""
+        ELASTIC_AGENT_VERSION: "8.8.2"
+        FLEET_URL: "https://d5413dfdd9af4b2d9d16ee46b1b0be11.fleet.ap-northeast-2.aws.elastic-cloud.com:443"
+        FLEET_ENROLLMENT_TOKEN: "${PROD_FLEET_ENROLLMENT_TOKEN}"
+        KIBANA_HOST: "https://prod-arbeon-monitor.kb.ap-northeast-2.aws.elastic-cloud.com:9243"
         #otel-config.yaml
-        APM_ENDPOINT: ""
-        APM_SECRET_TOKEN: ""
-        KIBANA_FLEET_PASSWORD: ""
+        APM_ENDPOINT: "https://prod-arbeon-monitor.apm.ap-northeast-2.aws.elastic-cloud.com:443"
+        APM_SECRET_TOKEN: "${PROD_APM_SECRET_TOKEN}"
+        KIBANA_FLEET_PASSWORD: "${PROD_KIBANA_FLEET_PASSWORD}"
         ENV: production
           
 stages:
