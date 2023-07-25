@@ -26,7 +26,7 @@ workflow:
     variables:
         KUBE_CONFIG: ${INTE_KUBE_CONFIG}
         #elastic-agent.yaml
-        FLEET_URL: "https://a927d56963234c64b8504a1fc0ddafe8.fleet.ap-northeast-2.aws.elastic-cloud.com:443"
+        FLEET_URL: "https://87311c79ca594cc78832b2f70fd37836.fleet.ap-northeast-2.aws.elastic-cloud.com:443"
         FLEET_ENROLLMENT_TOKEN: "${DEV_FLEET_ENROLLMENT_TOKEN}"
         KIBANA_HOST: "https://dev-arbeon-monitor.kb.ap-northeast-2.aws.elastic-cloud.com:9243"
         #otel-config.yaml
@@ -38,7 +38,7 @@ workflow:
     variables:
         EKS_CLUSTER_NAME: "arbeon-staging-cls"
         #elastic-agent.yaml
-        FLEET_URL: "https://a927d56963234c64b8504a1fc0ddafe8.fleet.ap-northeast-2.aws.elastic-cloud.com:443"
+        FLEET_URL: "https://87311c79ca594cc78832b2f70fd37836.fleet.ap-northeast-2.aws.elastic-cloud.com:443"
         FLEET_ENROLLMENT_TOKEN: "${DEV_FLEET_ENROLLMENT_TOKEN}"
         KIBANA_HOST: "https://dev-arbeon-monitor.kb.ap-northeast-2.aws.elastic-cloud.com:9243"
         #otel-config.yaml
